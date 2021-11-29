@@ -18,7 +18,7 @@ app.post('/exercises', (req, res) => {
         })
         .catch(error => {
             console.error(error);
-            /// In case of an erro, send back status code 400 in case of an error. 
+            /// In case of an error, send back status code 400 in case of an error. 
             res.status(400).json({ Error: 'Request failed' });
         });
 });
