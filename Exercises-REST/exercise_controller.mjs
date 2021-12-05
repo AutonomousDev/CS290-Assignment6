@@ -1,12 +1,20 @@
 import * as exercise from './exercise_model.mjs';
-
 import express from 'express';
 
 const PORT = 3000;
-
 const app = express();
 
-app.use(express.json());
+// parse application/json
+app.use(express.json())
+   .use(express.urlencoded({ extended: true }))    // application/x-www-form-urlencoded
+
+/*
+//log body for debugning
+app.post("/exercises", (req, res) => {
+    console.log("*********************************************************************");
+    console.log(req);
+  });
+*/
 
 /**
  * Create a new movie with the title, year and language provided in the body

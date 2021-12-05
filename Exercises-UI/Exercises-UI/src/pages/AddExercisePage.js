@@ -11,54 +11,67 @@ export const AddExercisePage = () => {
     const history = useNavigate();
 
     const addExercise = async () => {
-        const newExercise = { name, reps, weight, unit, date }
+        const newExercise = { name, reps, weight, unit, date };
         const response = await fetch('/exercises', {
-            method: "POST", 
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newExercise),
-            header: {
-                'Content-Type': 'application/json',
-            },
         });
-        if(response.status === 201){
+        if (response.status === 201) {
             alert("Successfully added the exercise");
         }
-        else{
+        else {
+            console.log()
+
             alert(`Failed to add exercise, status code = ${response.status}`);
         }
         history("/");
     };
 
     return (
+
         <div>
             <h1>Add Exercise</h1>
             <input
                 type="text"
                 placeholder="Exercise Name"
+                name="name"
                 value={name}
-                onChange={e => setName(e.target.value)} />
+                onChange={e => setName(e.target.value)}
+            />
             <input
                 type="number"
                 placeholder="Reps"
+                name="reps"
                 value={reps}
-                onChange={e => setReps(e.target.value)} />
+                onChange={e => setReps(e.target.value)}
+            />
             <input
                 type="number"
                 placeholder="Weight"
+                name="weight"
                 value={weight}
-                onChange={e => setWeight(e.target.value)} />
+                onChange={e => setWeight(e.target.value)}
+            />
             <input
-                type="string"
+                type="text"
                 placeholder="Units"
+                name="units"
                 value={unit}
-                onChange={e => setUnit(e.target.value)} />
+                onChange={e => setUnit(e.target.value)}
+            />
             <input
-                type="string"
+                type="date"
                 placeholder="Date"
+                name="date"
                 value={date}
-                onChange={e => setDate(e.target.value)} />
+                onChange={e => setDate(e.target.value)}
+            />
             <button
                 onClick={addExercise}
-            >Add</button>
+            >
+                Add exercise
+            </button>
         </div>
     )
 }

@@ -1,9 +1,11 @@
 import ExerciseList from '../components/ExerciseList';
 import { useState, eseEffect, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
-function HomePage() {
+function HomePage({ setExerciseToEdit}) {
+    const history = useNavigate();
 
 
     const [exercises, setExercises] = useState([]);
@@ -20,6 +22,11 @@ function HomePage() {
         }
     };
 
+    const onEdit = exercise =>{
+        setExerciseToEdit(exercise)
+        history("/edit-exercise");
+    }
+
     const loadExercises = async () => {
         const response = await fetch('/exercises');
         const data = await response.json();
@@ -33,7 +40,7 @@ function HomePage() {
     return (
         <>
             <h2>List of Movies</h2>
-            <ExerciseList exercises={exercises} onDelete={onDelete}></ExerciseList>
+            <ExerciseList exercises={exercises} onDelete={onDelete} onEdit={onEdit}></ExerciseList>
             <Link to="add-exercise">Add Exercise</Link>
         </>
     );
