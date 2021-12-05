@@ -61,7 +61,7 @@ export const AddExercisePage = () => {
                 onChange={e => setUnit(e.target.value)}
             />
             <input
-                type="date"
+                type="text"
                 placeholder="Date"
                 name="date"
                 value={date}
